@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="product1" class="com.example.springdi.Product">
+        <property name="name" value="노트북"/>
+        <property name="price" value="1500000"/>
+    </bean>
+
+    <bean id="product2" class="com.example.springdi.Product">
+        <constructor-arg value="마우스"/>
+        <constructor-arg value="30000"/>
+    </bean>
+
+    <bean id="shoppingCart" class="com.example.springdi.ShoppingCart">
+        <property name="products">
+            <list>
+                <ref bean="product1"/>
+                <ref bean="product2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="orderService" class="com.example.springdi.OrderService">
+        <property name="cart" ref="shoppingCart"/>
+    </bean>
+</beans>
